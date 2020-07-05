@@ -150,7 +150,7 @@ def nameprovinsi():
     nama_prov = soup.find_all('div', {'class':'covid__row'})
     nama_provinsi = []
 
-    for i in range(len(nama_prov)):
+    for i in range(len(nama_prov)-1):
         nama_provinsi.append(nama_prov[i].find_all('div')[0].text)
 
     return nama_provinsi
@@ -190,12 +190,12 @@ def hasilProvinsi(kodeprovinsi):
     meninggal_positif_provinsi = []
     sembuh_provinsi = []
     
-    for i in range(len(nama_prov)):
+    for i in range(len(nama_prov)-1):
 
         No.append(i+1)
-        positif_provinsi.append(nama_prov[i].find('div', {'class':'covid__total'}).find('span', {'class':'-odp'}).text.split(' ')[1])
-        meninggal_positif_provinsi.append(nama_prov[i].find('div', {'class':'covid__total'}).find('span', {'class':'-gone'}).text.split(' ')[1])
-        sembuh_provinsi.append(nama_prov[i].find('div', {'class':'covid__total'}).find('span', {'class':'-health'}).text.split('  ')[1])
+        positif_provinsi.append(nama_prov[i].find('div', {'class':'covid__total'}).find('span', {'class':'-odp'}).find('strong').text)
+        meninggal_positif_provinsi.append(nama_prov[i].find('div', {'class':'covid__total'}).find('span', {'class':'-gone'}).find('strong').text)
+        sembuh_provinsi.append(nama_prov[i].find('div', {'class':'covid__total'}).find('span', {'class':'-health'}).find('strong').text)
    
     df_provinsi = pd.DataFrame(No, columns =['No'])
     df_provinsi = df_provinsi.rename(columns={"0":"No"})
@@ -381,6 +381,13 @@ def hasilRS(koders):
         resp += "2. RSUD Arga Makmur - Jl. Siti Khadijah No.8, Arga Makmur, Bengkulu Utara. Telp: (0737) 521118\n\n"
         resp += "3. RSUD Hasanuddin Damrah Manna - Raya Padang Panjang, Manna, Bengkulu Selatan. Telp: (0739) 22870"
     elif kode=="e5":
+        resp += "Daerah Istimewa Yogyakarta\n"
+        resp += "\n"
+        resp += "1. RSUP dr. Sardjito - Jl. Kesehatan No.1, Yogyakarta. Telp: (0274) 631190\n\n"
+        resp += "2. RSUD Panembahan Senopati Bantul - Jl. Dr. Wahidin Sudiro Husodo, Bantul. Telp: (0274) 367381\n\n"
+        resp += "3. RSUD Kota Yogyakarta - Jl. Ki Ageng Pemanahan No.1, Yogyakarta. Telp: (0274) 371195\n\n"
+        resp += "4. RSUD Wates - Jl. Tentara Pelajar Km. 1 No. 5, Kulon Progo. Telp: (0274) 773169"
+    elif kode=="e6":
         resp += "DKI Jakarta\n"
         resp += "\n"
         resp += "1. RSPI Prof. Dr. Sulianti Saroso - Jl. Sunter Permai Raya, Tanjung Priok, Jakarta Utara. Telp: (021) 6506559\n\n"
@@ -392,13 +399,6 @@ def hasilRS(koders):
         resp += "7. RSPAD Gatot Subroto - Jl. Abdul Rahman Saleh Raya No.24, Senen, Jakarta Pusat. Telp: (021) 3441008\n\n"
         resp += "8. RSAL dr. Mintoharjo - Jl. Bendungan Hilir No.17 A, Bendungan Hilir, Jakarta Pusat. Telp: (021) 5703081\n\n"
         resp += "9. RS Pertamina Jaya - Jl. Jenderal Ahmad Yani No.2, Cempaka Putih Tim, Jakarta Pusat. Telp: (021) 4211911"
-    elif kode=="e6":
-        resp += "Daerah Istimewa Yogyakarta\n"
-        resp += "\n"
-        resp += "1. RSUP dr. Sardjito - Jl. Kesehatan No.1, Yogyakarta. Telp: (0274) 631190\n\n"
-        resp += "2. RSUD Panembahan Senopati Bantul - Jl. Dr. Wahidin Sudiro Husodo, Bantul. Telp: (0274) 367381\n\n"
-        resp += "3. RSUD Kota Yogyakarta - Jl. Ki Ageng Pemanahan No.1, Yogyakarta. Telp: (0274) 371195\n\n"
-        resp += "4. RSUD Wates - Jl. Tentara Pelajar Km. 1 No. 5, Kulon Progo. Telp: (0274) 773169"
     elif kode=="e7":
         resp += "Gorontalo\n"
         resp += "\n"
