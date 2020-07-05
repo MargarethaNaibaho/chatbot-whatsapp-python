@@ -688,11 +688,15 @@ def sms_reply():
     	resp.message(hasil)
 
     elif msg == "f":
+    	kemenu = kembali()
     	hasil = Sumber()
+    	hasil += "\n\n" + kemenu
     	resp.message(hasil)
 
     elif msg == "g":
+    	kemenu = kembali()
     	hasil = Tentang()
+    	hasil += "\n\n" + kemenu
     	resp.message(hasil)
 
     else:
