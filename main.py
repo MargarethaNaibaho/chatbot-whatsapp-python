@@ -691,6 +691,10 @@ def sms_reply():
     	hasil = Sumber()
     	resp.message(hasil)
 
+    elif msg == "g":
+    	hasil = Tentang()
+    	resp.message(hasil)
+
     else:
     	if (cekKecamatan(msg)):
     		kemenu = kembali()
