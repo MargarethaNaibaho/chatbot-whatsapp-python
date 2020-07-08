@@ -708,7 +708,7 @@ def sms_reply():
 
     	elif (cekProvinsi(msg)):
     		kemenu = kembali()
-    		hasil = hasilKecamatan(msg)
+    		hasil = hasilProvinsi(msg)
     		hasil += "\n\n" + kemenu
     		resp.message(hasil)
 
